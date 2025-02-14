@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <!-- Company Name -->
+    <TextView
+        android:id="@+id/tvCompanyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KENZ"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INNOVATIONS"
+        android:textColor="#80FFFFFF"
+        android:textSize="14sp"
+        android:letterSpacing="0.2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCompanyName" />
+
+    <!-- Employee Management Text -->
+    <TextView
+        android:id="@+id/tvManagement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Employee Management"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="48dp"
+        android:layout_height="2dp"
+        android:background="#80FFFFFF"
+        android:layout_marginTop="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvManagement" />
+
+    <!-- Add Employee Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAddEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="48dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#33FFFFFF"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/divider">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/ivAddEmployee"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:background="@drawable/circle_white_bg"
+                android:src="@drawable/ic_add_person"
+                app:tint="@color/blue_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAddTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Employee"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/ivAddEmployee"
+                app:layout_constraintTop_toTopOf="@id/ivAddEmployee" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register new member"
+                android:textColor="#80FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/ivAddEmployee"
+                app:layout_constraintTop_toBottomOf="@id/tvAddTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- View Team Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#33FFFFFF"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cardAddEmployee">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/ivViewTeam"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:background="@drawable/circle_white_bg"
+                android:src="@drawable/ic_team"
+                app:tint="@color/blue_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/tvViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Team"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/ivViewTeam"
+                app:layout_constraintTop_toTopOf="@id/ivViewTeam" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Access employee data"
+                android:textColor="#80FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/ivViewTeam"
+                app:layout_constraintTop_toBottomOf="@id/tvViewTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Version Text -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMPLOYEE MANAGER v1.0"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

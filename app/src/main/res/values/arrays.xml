@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="departments_array">
+        <item>Select Department</item>
+        <item>IT</item>
+        <item>HR</item>
+        <item>Finance</item>
+        <item>Marketing</item>
+        <item>Operations</item>
+    </string-array>
+</resources>
