@@ -37,14 +37,18 @@
             app:layout_constraintBottom_toBottomOf="@id/btnBack"
             app:layout_constraintStart_toEndOf="@id/btnBack"
             app:layout_constraintTop_toTopOf="@id/btnBack" />
-
         <TextView
             android:id="@+id/tvCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 Total"
-            android:textColor="#80FFFFFF"
+            android:textColor="#B2FFFFFF"
             android:textSize="14sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/pill_background"
             app:layout_constraintBottom_toBottomOf="@id/btnBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/btnBack" />
@@ -70,11 +74,11 @@
             android:padding="12dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:elevation="8dp"
                 android:src="@drawable/ic_search"
-                android:tint="#80FFFFFF" />
+                android:tint="#C9FFFFFF" />
 
             <EditText
                 android:id="@+id/etSearch"
@@ -84,7 +88,7 @@
                 android:background="@null"
                 android:hint="Search employees..."
                 android:textColor="@android:color/white"
-                android:textColorHint="#50FFFFFF"
+                android:textColorHint="#7CFFFFFF"
                 android:textSize="16sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -108,7 +112,12 @@
         android:layout_margin="24dp"
         android:backgroundTint="@android:color/white"
         android:src="@drawable/ic_add"
-        android:tint="@color/blue_primary"
+        android:tint="#6750A4"
+        app:borderWidth="0dp"
+        app:elevation="2dp"
+        app:fabCustomSize="52dp"
+        app:maxImageSize="24dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -8,6 +8,8 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
-
+    <style name="ShapeAppearance.Material3.Corner.Full" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
     <style name="Theme.Employee_Management_App" parent="Base.Theme.Employee_Management_App" />
 </resources>

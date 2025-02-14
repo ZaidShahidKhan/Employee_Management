@@ -16,7 +16,8 @@ import java.util.List;
 
 public class ApiService {
     private static final String TAG = "ApiService";
-    private static final String BASE_URL = "http://192.168.0.2:3000/api";
+//    private static final String BASE_URL = "https://employee-server-szkq.onrender.com/api";
+private static final String BASE_URL = "https://employeeserver-production.up.railway.app/api";
     private static ApiService instance;
 
     private ApiService() {}

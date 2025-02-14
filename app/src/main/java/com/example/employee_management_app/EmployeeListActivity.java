@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ public class EmployeeListActivity extends AppCompatActivity {
     private List<Employee> filteredEmployees = new ArrayList<>();
     private TextView tvCount;
     private EditText etSearch;
+    private int lastAnimatedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +36,42 @@ public class EmployeeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_list);
 
         // Initialize views
+        initializeViews();
+
+        // Setup RecyclerView with animations
+        setupRecyclerView();
+
+        // Setup search functionality
+        setupSearch();
+
+        // Setup FAB click listener
+        setupFab();
+
+        // Setup back button
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        // Load employees
+        loadEmployees();
+    }
+
+    private void initializeViews() {
         recyclerView = findViewById(R.id.recyclerView);
         tvCount = findViewById(R.id.tvCount);
         etSearch = findViewById(R.id.etSearch);
-        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
+    }
 
-        // Setup RecyclerView
+    private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new EmployeeAdapter(filteredEmployees);
         recyclerView.setAdapter(adapter);
 
-        // Setup search functionality
+        // Create and set the layout animation controller
+        LayoutAnimationController animation = AnimationUtils
+                .loadLayoutAnimation(this, R.anim.layout_animation_fall_down);
+        recyclerView.setLayoutAnimation(animation);
+    }
+
+    private void setupSearch() {
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -56,23 +84,20 @@ public class EmployeeListActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+    }
 
-        // Setup FAB click listener
+    private void setupFab() {
+        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddEmployeeActivity.class);
             startActivity(intent);
         });
-
-        // Setup back button
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-        // Load employees
-        loadEmployees();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        lastAnimatedPosition = -1; // Reset animation position
         loadEmployees(); // Refresh list when returning to this screen
     }
 
@@ -83,6 +108,8 @@ public class EmployeeListActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     employees = result;
                     filterEmployees(etSearch.getText().toString());
+                    // Run the layout animation again
+                    recyclerView.scheduleLayoutAnimation();
                 });
             }
 
@@ -113,5 +140,6 @@ public class EmployeeListActivity extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
         tvCount.setText(filteredEmployees.size() + " Total");
+        recyclerView.scheduleLayoutAnimation(); // Animate items after filtering
     }
 }
