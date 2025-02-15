@@ -101,7 +101,29 @@ private static final String BASE_URL = "https://employeeserver-production.up.rai
             }
         }).start();
     }
+    public void deleteEmployee(int employeeId, ApiCallback<Void> callback) {
+        new Thread(() -> {
+            HttpURLConnection conn = null;
+            try {
+                URL url = new URL(BASE_URL + "/employees/" + employeeId);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("DELETE");
 
+                int responseCode = conn.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    callback.onSuccess(null);
+                } else {
+                    throw new Exception("Server returned code: " + responseCode);
+                }
+            } catch (Exception e) {
+                callback.onError(e);
+            } finally {
+                if (conn != null) {
+                    conn.disconnect();
+                }
+            }
+        }).start();
+    }
 
     // Get All Employees
     public void getAllEmployees(ApiCallback<List<Employee>> callback) {
@@ -112,7 +134,7 @@ private static final String BASE_URL = "https://employeeserver-production.up.rai
                 conn.setRequestMethod("GET");
 
                 BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream()));
+                        new InputStreamReader(conn.getInputStream())); //raw data stream to readable format
                 StringBuilder response = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {

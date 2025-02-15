@@ -342,6 +342,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Team Members"
+                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:textColor="#80FFFFFF"
                             android:textSize="14sp"/>
                     </LinearLayout>
@@ -426,6 +428,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Action Items"
+                            android:gravity="center"
                             android:textColor="#80FFFFFF"
                             android:textSize="14sp"/>
                     </LinearLayout>

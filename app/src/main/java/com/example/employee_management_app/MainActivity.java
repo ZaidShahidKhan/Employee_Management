@@ -3,6 +3,7 @@ package com.example.employee_management_app;
 import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -18,12 +19,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private CardView cardAddEmployee, cardViewTeam;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        playStartupSound();
         TextView companyName = findViewById(R.id.tvCompanyName);
         Animation blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink_three_times);
         companyName.startAnimation(blinkAnimation);
@@ -48,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         CardView cardAddEmployee = findViewById(R.id.cardAddEmployee);
         CardView cardViewTeam = findViewById(R.id.cardViewTeam);
 
-// Initial entrance animations for cards
         Animation scaleFadeInAdd = AnimationUtils.loadAnimation(this, R.anim.scale_fade_in);
         scaleFadeInAdd.setStartOffset(1000);
         cardAddEmployee.startAnimation(scaleFadeInAdd);
@@ -57,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         scaleFadeInView.setStartOffset(1200);
         cardViewTeam.startAnimation(scaleFadeInView);
 
-// Button press animation for cards
         View.OnTouchListener cardTouchListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(final View view, android.view.MotionEvent event) {
@@ -102,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-// Apply touch listener to both cards
         cardAddEmployee.setOnTouchListener(cardTouchListener);
         cardViewTeam.setOnTouchListener(cardTouchListener);
 
@@ -113,7 +114,33 @@ public class MainActivity extends AppCompatActivity {
         );
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
+    }
+    private void playStartupSound() {
+        try {
+            // Create and setup MediaPlayer
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound);
 
+            // Optional: Set volume
+         //   mediaPlayer.setVolume(0.5f, 0.5f);  // Left and right volume (0.0 to 1.0)
 
+            // Start playing
+            mediaPlayer.start();
+
+            // Optional: Release when done playing
+            mediaPlayer.setOnCompletionListener(mp -> {
+                mp.release();
+                mediaPlayer = null;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
